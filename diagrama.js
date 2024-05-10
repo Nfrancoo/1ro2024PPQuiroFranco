@@ -34,7 +34,7 @@ class Persona{
         if (!Number.isInteger(fechaNacimientoSet)) {
             fechaNacimientoSet = parseInt(fechaNacimientoSet);
         }
-        if (!isNaN(fechaNacimientoSet) && typeof fechaNacimientoSet === 'number' && fechaNacimientoSet >= 10000000 && fechaNacimientoSet <= 99991231) {
+        if (!isNaN(fechaNacimientoSet) && typeof fechaNacimientoSet === 'number' && fechaNacimientoSet >= 10000101 && fechaNacimientoSet <= 99991231) {
             this.fechaNacimiento = fechaNacimientoSet;
         } else {
             throw new Error("Error: La fecha de nacimiento debe ser un número entero con formato AAAAMMDD.");
