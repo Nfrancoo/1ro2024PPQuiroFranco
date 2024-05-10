@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PP_Labo</title>
+    <style>
+        .form-container{
+            width: 800px; 
+            height: 550px;
+            background-color: rgb(152, 236, 215); 
+            border: 2px solid black; 
+            position: absolute;
+            top: 50%; /* Centrado verticalmente */
+            left: 50%; /* Centrado horizontalmente */
+            transform: translate(-50%, -50%); /*para centrar*/
+            padding: 20px; /* Añadir espacio interno */
+        }
+        .formularioABM{
+            width: 300px; 
+            height: 350px;
+            background-color: rgb(152, 236, 215); 
+            border: 2px solid black; 
+            position: absolute;
+            top: 50%; /* Centrado verticalmente */
+            left: 50%; /* Centrado horizontalmente */
+            transform: translate(-50%, -50%); /*para centrar*/
+            padding: 20px; /* Añadir espacio interno */
+        }
+        .form-container p {
+            margin-bottom: 10px;
+        }
+        .form-container input[type="checkbox"] {
+            margin-top: 5px; /* Mover el checkbox hacia abajo */
+        }
+        .form-container .table-datos {
+            margin-top: -40px; /* Espacio entre las columnas y el botón */
+        }
+        .form-container button {
+            display: inline-block; /* Mostrar el botón en línea */
+            margin-top: 30px; /* Espacio entre la tabla y el botón */
+        }
+
+        .formularioABM h1{
+          margin-top: -10px;
+          margin-bottom: 0px;
+        }
+
+        .formularioABM div{
+          margin-top: 5px;
+        }
+
+        /* .formularioABM bu {
+            margin-bottom: -5px;
+        }
+        .rformularioABM input[type="checkbox"] {
+            margin-top: 20px; 
+        }
+        .form-container .table-datos {
+            margin-top: 20px; 
+        } */
+        .formularioABM button {
+            margin-top: 10px;
+            margin-right: 10px; /* Espacio a la derecha de cada botón */
+        }
+
+
+
+        /* .botones-container {
+            position: absolute;
+            bottom: 30px;
+            left: 49px;
+        }
+        .botones-container button {
+            margin-left: 45px;
+        
+        } */
+
+        /* Estilos para la tabla */
+        table {
+            width: 100%;
+            border-collapse: collapse; /* Para que los bordes de las celdas se unan */
+        }
+        
+        /* Estilos para las celdas de la tabla */
+        th, td {
+            border: 3px solid black; /* Borde sólido de 1px */
+            padding: 8px; /* Espaciado interno */
+            text-align: left; /* Alineación del texto */
+        }
+        
+        /* Estilos para las filas impares */
+        tr {
+            background-color: rgb(122, 252, 252); /* Fondo gris claro */
+        }
+    </style>
+</head>
+<body>
+
+    <form id="form-datos" class="form-container">
+      <h1>Form Datos</h1>
+      <p>Filtrar Por:
+          <select id="select-filtro">
+              <option value="todos">Todos</option>
+              <option value="ciudadano">Ciudadano</option>
+              <option value="extranjero">Extranjero</option>
+          </select>
+      </p>
+      <p>Calcular Fecha Nacimiento Promedio:
+          <input id="txtPromedio" placeholder="Promedio fecha nacimiento" type="text" readonly><button button id="btn_calcular">Calcular</button>
+      </p>
+      <p>Mostrar columnas: </p>
+      <input type="checkbox" id="idCheck" >
+      <label>Id</label>
+      <input type="checkbox" id="nombreCheck" >
+      <label>Nombre</label>
+      <input type="checkbox" id="apellidoCheck" >
+      <label>Apellido</label>
+      <input type="checkbox" id="fechaNacimientoCheck">
+      <label>Fecha de Nacimiento</label>
+      <input type="checkbox" id="dniCheck">
+      <label>Dni</label>
+      <input type="checkbox" id="paisOrigenCheck">
+      <label>Pais de Origen</label>
+      <table id="table-datos">
+          <thead>
+            <tr>
+              <th id="t-head-id" >Id</th>
+              <th id="t-head-apellido">Apellido</th>
+              <th id="t-head-nombre">Nombre</th>
+              <th id="t-head-fechaNacimiento">Fecha de Nacimiento</th>
+              <th id="t-head-dni">Dni</th>
+              <th id="t-head-paisOrigen">Pais de origen</th>
+            </tr>
+          </thead>
+          <tbody id="t-user-body">
+          </tbody>
+      </table>
+      <button id="btn-mostrar-agregar" type="button">Agregar</button>
+    </form>
+  <form id="form-agregar" class="formularioABM" hidden>
+    <h1>Formulario ABM</h1>
+    <div id="div-id">
+      <div>
+          <label>Id</label>
+      </div>
+      <div >
+          <input class="form-control" id="txt-id" placeholder="id" type="text" readonly>
+      </div>
+    </div>
+    <div >
+      <div >
+          <label>Nombre</label>
+      </div>
+      <div >
+          <input id="txt-nombre" placeholder="nombre" type="text">
+      </div>
+    </div>
+    <div >
+      <div>
+          <label>Apellido</label>
+      </div>
+      <div >
+          <input id="txt-apellido" placeholder="apellido" type="text">
+      </div>
+    </div>
+    <div >
+      <div >
+          <label >Fecha de Nacimiento</label>
+      </div>
+      <div >
+          <input id="txt-fechaNacimiento" placeholder="fecha de nacimiento" type="text">
+      </div>
+    </div>
+    <div >
+      <div >
+          <label >Tipo</label>
+      </div>
+      <div >
+        <select id="select-tipo">
+          <option value="ciudadano">Ciudadano</option>
+          <option value="extranjero">Extranjero</option>
+        </select>
+      </div>
+    </div>
+    <div id="div-dni" >
+      <div>
+          <label>Dni</label>
+      </div>
+      <div>
+          <input id="txt-dni" placeholder="dni" type="text">
+      </div>
+    </div>
+    <div id="div-paisOrigen">
+      <div>
+          <label>Pais de Origen</label>
+      </div>
+      <div>
+          <input id="txt-paisOrigen" placeholder="Pais de origen" type="text">
+      </div>
+    </div>
+    <div>
+      <div>
+        <button id="btn-agregar" type="button">Agregar</button>
+        <button id="btn-modificar" type="button">Modificar</button>
+        <button id="btn-eliminar" type="button">Eliminar</button>
+        <button id="btn-cancelar" type="button">Cancelar</button>
+    </div>
+  </form>
+  <script type = "text/javascript" src="diagrama.js"></script>  
+</body>
+</html>
